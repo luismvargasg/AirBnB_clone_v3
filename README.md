@@ -8,7 +8,7 @@ The Airbnb clone is one of the main projects at Holberton School, it's a long te
 The first step that we need to build is "the console" or the command interpreter, this is meant to be a tool to validate or manipulate the storage system, through the console we are gonna be able of:
 * Create our data model.
 * Manage (create, update, destroy, etc) objects.
-* Store and persist objects to a file (JSON file)
+* Store and persist objects to a file (JSON file).
 
 This storage engine will give us an abstraction between “My object” and “How they are stored and persisted”.
 
