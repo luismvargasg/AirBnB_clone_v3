@@ -113,3 +113,47 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+
+class TestFileStorageMethods(unittest.TestCase):
+    """Test the different methods on DBStorage"""
+    @classmethod
+    def setUpClass(cls):
+        """method called to initialize an obj of Base class with id 1"""
+        cls.obj = State(name="Magdalena")
+        cls.obj2 = City(state_id=cls.obj.id, name="Santa Marta")
+        cls.obj.save()
+        cls.obj2.save()
+
+    @classmethod
+    def tearDownClass(cls):
+        """cleaning the attribute nb_objects counter to 0"""
+        os.remove('file.json')
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get(self):
+        """test that finds if the get method is returning properly"""
+        first_state_id = list(models.storage.all(State).values())[0].id
+        res = models.storage.get(State, first_state_id)
+        self.assertEqual(res.__class__.__name__, 'State')
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count_all(self):
+        """test that checks if the count method is returning the correct
+        ammount of objects"""
+        res = models.storage.count()
+        self.assertEqual(res, 2)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count_existing_cls(self):
+        """test that checks if the count method is returning the correct
+        ammount of objects"""
+        res = models.storage.count('City')
+        self.assertEqual(res, 1)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_count_non_existing_cls(self):
+        """test that checks if the count method is returning the correct
+        ammount of objects"""
+        res = models.storage.count('User')
+        self.assertEqual(res, 0)
