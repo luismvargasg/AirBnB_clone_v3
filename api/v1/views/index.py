@@ -16,7 +16,7 @@ def stats():
     """Method that retrieves the number of each object by type"""
     return jsonify(amenities=st.count('Amenity'),
                    cities=st.count('City'),
-                   places=st.count('Place')
+                   places=st.count('Place'),
                    reviews=st.count('Review'),
                    states=st.count('State'),
                    users=st.count('User'))
