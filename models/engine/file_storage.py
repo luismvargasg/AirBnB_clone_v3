@@ -77,7 +77,8 @@ class FileStorage:
         obj = extracted_class.get(key)
         if obj is None:
             return None
-        return obj
+        else:
+            return obj
 
     def count(self, cls=None):
         """Method that returns the number of objects in storage matching the
