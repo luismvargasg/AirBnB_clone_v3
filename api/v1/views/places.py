@@ -30,7 +30,7 @@ def get_places(place_id=None, city_id=None):
                     return jsonify(error="Missing user_id"), 400
                 elif not data.get("name"):
                     return jsonify(error="Missing name"), 400
-                user_obj = st.get(User, data[user_id])
+                user_obj = st.get(User, data["user_id"])
                 if user_obj:
                     data["city_id"] = city_id
                     new_place = Place(**data)
