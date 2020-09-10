@@ -13,7 +13,7 @@ from models.user import User
 def get_users(user_id=None):
     """Method to display the welcome text"""
     if user_id:
-        user_obj = st.get(Amenity, user_id)
+        user_obj = st.get(User, user_id)
         if user_obj:
             if request.method == "DELETE":
                 st.delete(user_obj)
