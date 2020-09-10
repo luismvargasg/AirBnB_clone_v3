@@ -15,7 +15,7 @@ from models.user import User
 def get_places(place_id=None, city_id=None):
     """Method to display the welcome text"""
     if city_id:
-        city_obj = st.get(City, place_id)
+        city_obj = st.get(City, city_id)
         if city_obj:
             if request.method == "GET":
                 my_list = []
