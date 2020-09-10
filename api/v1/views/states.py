@@ -19,9 +19,9 @@ def get_states(state_id=None):
                 st.delete(state_obj)
                 st.save()
                 return jsonify({}), 200
-            if request.method == "GET":
+            elif request.method == "GET":
                 return jsonify(state_obj.to_dict())
-            if request.method == "PUT":
+            elif request.method == "PUT":
                 data = request.get_json()
                 if not data:
                     return jsonify(error="Not a JSON"), 400
@@ -38,7 +38,7 @@ def get_states(state_id=None):
             for state in res:
                 my_list.append(state.to_dict())
             return jsonify(my_list)
-        if request.method == "POST":
+        elif request.method == "POST":
             data = request.get_json()
             if not data:
                 return jsonify(error="Not a JSON"), 400
